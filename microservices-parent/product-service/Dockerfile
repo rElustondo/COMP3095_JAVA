@@ -20,3 +20,22 @@ WORKDIR /home/gradle/src
 
 RUN gradle build -x test
 
+#------------
+# Package stage
+#----------
+FROM openjdk:17-alpine
+
+# Create Directory within the container - not the host machine
+
+RUN mkdir /app
+
+COPY --from=builder /home/gradle/src/build/libs/*.jar /app/product-service.jar
+
+ENV MONGO_DB_USERNAME = rootadmin \
+    MONGO_DB_PWD = password
+
+EXPOSE 8084
+
+ENTRYPOINT ["java","-jar","/app/product-service.jar"]
+
+
