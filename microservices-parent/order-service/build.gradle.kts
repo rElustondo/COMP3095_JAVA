@@ -30,6 +30,9 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation(enforcedPlatform("org.testcontainers:testcontainers-bom:1.16.2"))
+	implementation("org.testcontainers:postgresql")
+	testImplementation("org.testcontainers:junit-jupiter")
 }
 
 tasks.withType<Test> {
