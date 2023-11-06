@@ -2,6 +2,21 @@ version: '3.8'
 
 services:
 
+  order-service:
+    image: order-service
+    ports:
+      - "8082:8082"
+    build:
+      context: ./order-service
+      dockerfile: ./Dockerfile
+    container_name: order-service-gbc
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres-order
+    networks:
+      - spring
+
   product-service:
     image: product-service
     ports:
@@ -14,6 +29,22 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     depends_on:
       - mongodb
+    networks:
+      - spring
+
+  postgres-order:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=order-service
+    volumes:
+      - ./data/postgres/order-service:/data/postgres
+      - ./init/postgres/order-service/init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: postgres-order-gbc
+    restart: unless-stopped
     networks:
       - spring
 
@@ -33,6 +64,20 @@ services:
     networks:
       - spring
 
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8888:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.ca
+      - PGADMIN_DEFAULT_PASSWORD=password
+    volumes:
+      - ./data/postgres/order-service:/data/postgres
+      - ./init/postgres/order-service/init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: pgadmin-order-gbc
+    restart: unless-stopped
+    networks:
+      - spring
   mongo-express:
     image: mongo-express
     ports:
