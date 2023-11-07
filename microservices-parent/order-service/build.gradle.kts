@@ -32,7 +32,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation(enforcedPlatform("org.testcontainers:testcontainers-bom:1.16.2"))
 	implementation("org.testcontainers:postgresql")
-	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.testcontainers:junit-jupiter") // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
+	implementation("org.springframework.boot:spring-boot-starter-webflux:3.1.5")
+	implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
 }
 
 tasks.withType<Test> {
