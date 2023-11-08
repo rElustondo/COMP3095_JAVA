@@ -35,6 +35,7 @@ dependencies {
 	testImplementation("org.testcontainers:junit-jupiter") // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
 	implementation("org.springframework.boot:spring-boot-starter-webflux:3.1.5")
 	implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3")
 }
 
 tasks.withType<Test> {
