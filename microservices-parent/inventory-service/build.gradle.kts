@@ -31,6 +31,9 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3")
+    implementation(enforcedPlatform("org.testcontainers:testcontainers-bom:1.16.2"))
+    implementation("org.testcontainers:postgresql")
+    testImplementation("org.testcontainers:junit-jupiter")
 
 }
 

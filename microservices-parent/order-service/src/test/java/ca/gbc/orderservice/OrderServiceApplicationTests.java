@@ -96,11 +96,6 @@ class OrderServiceApplicationTests {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//orderService.placeOrder(orderRequest);
-		//List<Order> savedOrders = orderRepository.findAll();
-		//Order savedOrder = orderRepository.findAll().get(savedOrders.size()-1);
-		//assert savedOrder.getOrderNumber() != null;
-		//assert savedOrder.getOrderLineItemList().size() == 1;
 
 	}
 }
