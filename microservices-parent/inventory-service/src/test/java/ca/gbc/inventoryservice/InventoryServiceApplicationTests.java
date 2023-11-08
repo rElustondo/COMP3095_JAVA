@@ -75,14 +75,13 @@ class InventoryServiceApplicationTests {
             e.printStackTrace();
         }
 
-        // Perform database-related assertions as needed
         try (Connection connection = postgreSQLContainer.createConnection("");
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM inventory WHERE sku_code = 'QWE123'");
             while (resultSet.next()) {
                 int quantity = resultSet.getInt("quantity");
                 assertNotNull(quantity);
-                assertTrue(quantity >= 1); // Adjust the condition as needed
+                assertTrue(quantity >= 1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
