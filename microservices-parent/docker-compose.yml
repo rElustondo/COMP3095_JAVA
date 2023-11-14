@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  discovery-service:
+    image: discovery-service
+    ports:
+      - "8761:8761"
+    build:
+      context: ./discovery-service
+      dockerfile: ./Dockerfile
+    container_name: discovery-service-gbc
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - spring
   inventory-service:
     image: inventory-service
     ports:
