@@ -8,7 +8,7 @@ services:
     build:
       context: ./discovery-service
       dockerfile: ./Dockerfile
-    container_name: discovery-service-gbc
+    container_name: discovery-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
