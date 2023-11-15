@@ -11,6 +11,10 @@ services:
     container_name: discovery-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres-inventory
+      - postgres-order
+      - mongodb
     networks:
       - spring
   inventory-service:
@@ -23,8 +27,9 @@ services:
     container_name: inventory-service-gbc
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     depends_on:
-      - postgres-inventory
+      - discovery-service
     networks:
       - spring
   order-service:
@@ -37,8 +42,9 @@ services:
     container_name: order-service-gbc
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     depends_on:
-      - postgres-order
+      - discovery-service
     networks:
       - spring
 
@@ -52,8 +58,9 @@ services:
     container_name: product-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     depends_on:
-      - mongodb
+      - discovery-service
     networks:
       - spring
   postgres-inventory:
