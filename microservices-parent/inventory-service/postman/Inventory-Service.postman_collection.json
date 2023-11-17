@@ -9,10 +9,19 @@
 		{
 			"name": "IsInStock",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"skuCode\":\"sku_12345\",\r\n        \"quantity\":1\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8083/api/inventory/sku_12345",
+					"raw": "http://localhost:8083/api/inventory",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,8 +29,7 @@
 					"port": "8083",
 					"path": [
 						"api",
-						"inventory",
-						"sku_12345"
+						"inventory"
 					]
 				}
 			},
