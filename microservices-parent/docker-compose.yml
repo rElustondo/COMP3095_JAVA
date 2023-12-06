@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  zipkin:
+    image: openzipkin/zipkin:latest
+    restart: unless-stopped
+    ports:
+      - "9411:9411"
+    container_name: zipkin-comp3095
+    networks:
+      - spring
   keycloak:
     image: jboss/keycloak
     ports:
@@ -36,12 +44,15 @@ services:
       - postgres-inventory
       - postgres-order
       - mongodb
+      - postgres-keycloak
+      - keycloak
     networks:
       - spring
   api-gateway:
     image: api-gateway
     ports:
       - "8181:8181"
+    restart: unless-stopped
     build:
       context: ./api-gateway
       dockerfile: ./Dockerfile
@@ -51,6 +62,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     depends_on:
       - discovery-service
+      - keycloak
     networks:
       - spring
   inventory-service:

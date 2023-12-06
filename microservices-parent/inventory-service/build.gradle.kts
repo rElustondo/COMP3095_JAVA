@@ -34,7 +34,12 @@ dependencies {
     implementation(enforcedPlatform("org.testcontainers:testcontainers-bom:1.16.2"))
     implementation("org.testcontainers:postgresql")
     testImplementation("org.testcontainers:junit-jupiter")
-
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-observation
+    implementation("io.micrometer:micrometer-observation:1.11.3")
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-brave
+    implementation("io.micrometer:micrometer-tracing-bridge-brave:1.1.4")
+    // https://mvnrepository.com/artifact/io.zipkin.reporter2/zipkin-reporter-brave
+    implementation("io.zipkin.reporter2:zipkin-reporter-brave:2.16.4")
 }
 
 tasks.withType<Test> {

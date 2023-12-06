@@ -38,6 +38,12 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3")
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-circuitbreaker-resilience4j
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.0.3")
+	// https://mvnrepository.com/artifact/io.micrometer/micrometer-observation
+	implementation("io.micrometer:micrometer-observation:1.11.3")
+	// https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-brave
+	implementation("io.micrometer:micrometer-tracing-bridge-brave:1.1.4")
+	// https://mvnrepository.com/artifact/io.zipkin.reporter2/zipkin-reporter-brave
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave:2.16.4")
 
 }
 
